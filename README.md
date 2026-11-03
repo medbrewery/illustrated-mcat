@@ -7,8 +7,8 @@ molecules, circuits, brain maps and plots, with the book's one-line margin
 mnemonics turned into cloze cards and its exercises turned into worked
 problems.
 
-> **Status:** first release in preparation. Watch this repo or check
-> [Releases](https://github.com/medbrewery/illustrated-mcat/releases) for the .apkg.
+**[Download on AnkiWeb](https://ankiweb.net/shared/info/1750297190)** ·
+[GitHub releases](https://github.com/medbrewery/illustrated-mcat/releases)
 
 See [release validation](docs/release-validation.md) for tested scope and remaining checks.
 
@@ -32,8 +32,8 @@ came from, and each card carries that reference.
 ## Install
 
 1. Install [Anki](https://apps.ankiweb.net/) on desktop.
-2. Download the latest `illustrated-mcat-<version>.apkg` from
-   [Releases](https://github.com/medbrewery/illustrated-mcat/releases).
+2. Download the deck from [AnkiWeb](https://ankiweb.net/shared/info/1750297190)
+   or get a specific version from [GitHub Releases](https://github.com/medbrewery/illustrated-mcat/releases).
 3. In Anki: **File → Import**, choose the file, keep "Update existing notes"
    on. Updating to a later version the same way replaces changed cards and
    is designed to preserve your review history. Back up your collection before updating.
