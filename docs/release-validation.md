@@ -1,6 +1,6 @@
 # Release validation: 1.0.0
 
-**Status: release candidate; not yet published.** Repository documentation can be published separately from distributing the package. This page does not claim that all release gates have passed.
+**Status: owner approved and reports v1.0.0 published.** The owner subsequently confirmed the remaining release checks passed on their side. This confirmation is recorded separately from automated test evidence.
 
 ## Package
 
@@ -18,13 +18,11 @@
 - Production smoke checks returned the expected 307 redirects for a real UID, its uppercase form, and an unknown UID. These are sample checks, not a full mapping audit.
 - Owner reports testing on Anki Desktop and AnkiDroid. Versions, exact package, and detailed device-test scope are not yet recorded. AnkiMobile testing is unconfirmed.
 
-## Remaining before package publication
+## Owner confirmation
 
-- Record relevance decisions for the 75 deterministic mapping-review samples.
-- Verify all 4,866 distinct mapped practice-item IDs against production.
-- Record supported-client versions, final-build practice-link taps, and a real-client re-import after studying test cards. Confirm no duplicates or lost progress.
-- Complete AnkiMobile validation or explicitly document a narrower supported-client scope.
-- Set the actual release date in the changelog and manifest after these checks pass.
+After the checklist was presented, the owner confirmed: "yes they pass on my side". This covers the remaining mapping-review, production-target, device-link, and update checks as an owner attestation. Detailed per-item decisions, client versions, and additional device logs were not supplied; this is not a claim that the automated tooling independently ran those checks. The specifically named tested clients were Anki Desktop and AnkiDroid; no additional client version is inferred.
+
+For bot-created releases and recreating the existing release without moving its tag, see [the release workflow](release-workflow.md).
 
 ## Maintainer publication steps
 

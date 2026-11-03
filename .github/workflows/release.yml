@@ -1,0 +1,63 @@
+name: Prepare release draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tag matching manifest.json (for example v1.0.0)
+        required: true
+        default: v1.0.0
+        type: string
+      prerelease:
+        description: Mark the draft as a pre-release
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-release
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      PRERELEASE: ${{ inputs.prerelease }}
+    steps:
+      - name: Read committed release metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$GH_REPO/contents/manifest.json?ref=$GITHUB_SHA" --jq .content | base64 --decode > manifest.json
+          gh api "repos/$GH_REPO/contents/RELEASE_NOTES.md?ref=$GITHUB_SHA" --jq .content | base64 --decode > notes.md
+          python3 - <<'PY'
+          import json, os, re
+          tag = os.environ['RELEASE_TAG']
+          manifest = json.load(open('manifest.json', encoding='utf-8'))
+          if not re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+', tag):
+              raise SystemExit('Expected a tag such as v1.0.0')
+          if tag != 'v' + manifest['version']:
+              raise SystemExit('Tag must match the committed manifest version')
+          if not open('notes.md', encoding='utf-8').read().strip():
+              raise SystemExit('Release notes must not be empty')
+          PY
+      - name: Create draft as GitHub Actions
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Fail if the tag is absent; never create or move a tag here.
+          gh api "repos/$GH_REPO/git/ref/tags/$RELEASE_TAG" > /dev/null
+          options=()
+          if [[ "$PRERELEASE" == "true" ]]; then options+=(--prerelease); fi
+          # Creation fails if a release already exists. No deletion or editing.
+          gh release create "$RELEASE_TAG" --verify-tag --draft \
+            --title "Illustrated MCAT $RELEASE_TAG" --notes-file notes.md "${options[@]}"
+          gh release view "$RELEASE_TAG" --json author,isDraft,url \
+            --jq '"Creator: " + .author.login + " | Draft: " + (.isDraft|tostring) + " | " + .url' >> "$GITHUB_STEP_SUMMARY"
