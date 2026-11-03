@@ -1,0 +1,8 @@
+# deck builds go to GitHub Releases, never into the repo
+*.apkg
+*.colpkg
+build/
+
+# OS / editor
+.DS_Store
+Thumbs.db
