@@ -1,6 +1,8 @@
 # Release validation: 1.0.0
 
-**Status: owner approved and reports v1.0.0 published.** The owner subsequently confirmed the remaining release checks passed on their side. This confirmation is recorded separately from automated test evidence.
+**Status: published.** [v1.0.0](https://github.com/medbrewery/illustrated-mcat/releases/tag/v1.0.0) was published at `2026-11-03T00:55:05Z` (November 2 in Toronto). The owner confirmed the remaining release checks passed on their side; that confirmation is separate from automated evidence.
+
+Also available on [AnkiWeb](https://ankiweb.net/shared/info/1750297190).
 
 ## Package
 
@@ -24,12 +26,8 @@ After the checklist was presented, the owner confirmed: "yes they pass on my sid
 
 For bot-created releases and recreating the existing release without moving its tag, see [the release workflow](release-workflow.md).
 
-## Maintainer publication steps
+## Published asset verification
 
-1. Confirm the evidence above is complete for the package identified by its checksum.
-2. Commit the final release metadata and tag that commit `v1.0.0`.
-3. Create the GitHub Release and attach `illustrated-mcat-1.0.0.apkg` and `SHA256SUMS.txt`. Packages belong in release assets, not Git history.
-4. Download the uploaded asset and verify its hash against the manifest.
-5. Update the README and errata to identify the published release.
+The public GitHub API reports a final release (not a draft or pre-release). Its package size and SHA-256 digest match `manifest.json`, and the uploaded checksum file's digest matches the local `SHA256SUMS.txt`. This checks GitHub's asset metadata; it is not a fresh download/import test.
 
-Check AnkiWeb's current sharing terms and each community's posting rules separately before announcements. This repository preparation does not post announcements or upload to those services.
+Future releases should follow the release workflow linked above. Preserve the published v1.0.0 tag and package; corrections belong in a new version.

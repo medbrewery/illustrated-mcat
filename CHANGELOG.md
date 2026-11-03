@@ -10,12 +10,12 @@ All notable changes to the deck. Versions follow `MAJOR.MINOR.PATCH`:
 Each release lists cards by their ID (see `docs/card-guide.md`). Counts and
 per-book totals come from `manifest.json` at that release.
 
-## [1.0.0] - Unreleased
+## [1.0.0] - 2026-11-03
 
 - First complete seven-book deck: 116 chapters, 7,227 accepted notes, and 7,245 cards.
 - 1,270 textbook figures and five bundled fonts.
 - Centered questions and answers, chapter tags, and back-side practice links.
-- Automated import/update validation passed. Publication awaits mapping and supported-client checks.
+- Automated import/update validation passed; the owner confirmed the remaining release checks passed.
 
 ### Added
 

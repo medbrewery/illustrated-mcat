@@ -10,7 +10,7 @@ problems.
 **[Download on AnkiWeb](https://ankiweb.net/shared/info/1750297190)** ·
 [GitHub releases](https://github.com/medbrewery/illustrated-mcat/releases)
 
-See [release validation](docs/release-validation.md) for tested scope and remaining checks.
+See [release validation](docs/release-validation.md) for automated checks and owner-reported testing.
 
 ## What is in it
 
